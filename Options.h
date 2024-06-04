@@ -12,6 +12,7 @@ struct Options
   bool showHiddenFilesFlag;
   bool sortByTimeFlag;
   bool sortBySizeFlag;
+  char* searchPath;
 };
 
 // Initialize the options structure with the parameters passed in from the command line

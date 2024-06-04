@@ -8,6 +8,7 @@ void initOptions(int argc, char *argv[], struct Options *options)
   options->showHiddenFilesFlag = false;
   options->sortByTimeFlag = false;
   options->sortBySizeFlag = false;
+  options->searchPath = ".";
 
   // Check each argument for the flags
   int i;
@@ -32,6 +33,10 @@ void initOptions(int argc, char *argv[], struct Options *options)
     else if (strcmp(argv[i], "-s") == 0)
     {
       options->sortBySizeFlag = true;
+    }
+    else
+    {
+      options->searchPath = argv[i];
     }
   }
 }
