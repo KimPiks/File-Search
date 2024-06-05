@@ -8,7 +8,7 @@ void initOptions(int argc, char *argv[], struct Options *options)
   options->showHiddenFilesFlag = false;
   options->sortByTimeFlag = false;
   options->sortBySizeFlag = false;
-  options->searchPath = ".";
+  options->searchPath = "."; // Default search path is the current directory
 
   // Check each argument for the flags
   int i;

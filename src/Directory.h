@@ -6,23 +6,38 @@
 #include <string.h>
 #include <errno.h>
 #include <dirent.h>
+#include <time.h>
+#include <sys/stat.h>
+#include <grp.h>
 #include "Options.h"
 
 #define MAX_PATH_LENGTH 256
 #define TIME_LENGTH 128
 #define PERMISSIONS_LENGTH 12
-#define TYPE_LENGTH 2
+#define GROUP_LENGTH 32
 
-void openDirectory(DIR** dir, const char *searchPath);
+struct FileInfo
+{
+  char name[MAX_PATH_LENGTH];
+  char type;
+  char permissions[PERMISSIONS_LENGTH];
+  char creationTime[TIME_LENGTH];
+  char group[GROUP_LENGTH];
+  long size;
+};
 
-void getStat(const char* path, struct stat* statbuf, struct dirent *pDirEnt);
-void getCreationTime(struct stat statbuf, char* time_str);
-void getPermissions(struct stat statbuf, char* permissions_str);
-void getType(struct stat statbuf, char* type_str);
+struct FileArray {
+  struct FileInfo* files;
+  int size;
+  int capacity;
+};
 
-void showShortFileInfo(struct dirent *pDirEnt);
+struct RecursivePathsArray {
+  char** recursivePaths;
+  int size;
+  int capacity;
+};
 
-void showLongFileInfo(const char* path, struct dirent *pDirEnt);
 void searchDirectory(const char *searchPath, struct Options options);
 
 #endif
