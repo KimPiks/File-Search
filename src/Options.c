@@ -14,29 +14,18 @@ void initOptions(int argc, char *argv[], struct Options *options)
   int i;
   for (i = 1; i < argc; i++)
   {
-    if (strcmp(argv[i], "-l") == 0)
-    {
-      options->fullFileInformationFlag = true;
-    }
-    else if (strcmp(argv[i], "-R") == 0)
-    {
-      options->recursiveSearchFlag = true;
-    }
-    else if (strcmp(argv[i], "-a") == 0)
-    {
-      options->showHiddenFilesFlag = true;
-    }
-    else if (strcmp(argv[i], "-t") == 0)
-    {
-      options->sortByTimeFlag = true;
-    }
-    else if (strcmp(argv[i], "-s") == 0)
-    {
-      options->sortBySizeFlag = true;
-    }
-    else
+    // If the argument does not start with a dash, it is the search path
+    if (argv[i][0] != '-')
     {
       options->searchPath = argv[i];
+      continue;
     }
+
+    // Check flags
+    if (strchr(argv[i], 'l') != NULL) options->fullFileInformationFlag = true;
+    if (strchr(argv[i], 'R') != NULL) options->recursiveSearchFlag = true;
+    if (strchr(argv[i], 'a') != NULL) options->showHiddenFilesFlag = true;
+    if (strchr(argv[i], 't') != NULL) options->sortByTimeFlag = true;
+    if (strchr(argv[i], 's') != NULL) options->sortBySizeFlag = true;
   }
 }
