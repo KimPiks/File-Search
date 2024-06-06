@@ -18,7 +18,6 @@ void getStat(const char* path, struct stat* statFile, struct dirent *pDirEnt)
   char fullPath[MAX_PATH_LENGTH+1];
   snprintf(fullPath, MAX_PATH_LENGTH+1, "%s/%s", path, pDirEnt->d_name);
   if (stat(fullPath, statFile) == -1) {
-    perror("stat");
     return;
   }
 }
