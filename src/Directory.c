@@ -275,4 +275,6 @@ void searchDirectory(const char *searchPath, struct Options options)
       free(recursivePaths.recursivePaths[i]);
     }
   }
+
+  free(recursivePaths.recursivePaths);
 }
